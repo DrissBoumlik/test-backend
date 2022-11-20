@@ -8,13 +8,9 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index(Request $request, User $user = null)
+    public function index(Request $request, User $user)
     {
-        if ($user) {
-            $posts = $user->posts;
-        } else {
-            $posts = Post::with('user')->get();
-        }
+        $posts = $user->posts;
         return ['count' => count($posts), 'posts' => $posts];
     }
 }
